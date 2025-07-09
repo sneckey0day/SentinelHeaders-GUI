@@ -1,116 +1,170 @@
-# 🛡️ Claud 2 - HTTP Security Headers Scanner v3.0
+# SentinelHeaders - HTTP Security Headers Scanner
 
-**Claud 2** is a professional-grade tool built for security assessments and red teamers. It performs a comprehensive analysis of HTTP response headers to identify missing or misconfigured security controls. This scanner focuses on critical to low-priority headers and provides actionable recommendations where applicable.
-
----
-
-## 📌 Features
-
-- ✅ Scans a single URL or bulk URLs from a file
-- ✅ Checks for a wide range of HTTP security headers
-- ✅ Outputs results in CSV format
-- ✅ Supports threading, timeouts, and delays for large-scale scans
-- ✅ Proxy support for tunneled assessments
-- ✅ Custom User-Agent injection
-- ✅ Option to disable color for CI pipeline use
-- ✅ Verbose mode for detailed header recommendations
-- ✅ Built-in header reference guide
+A professional Python-based CLI tool for assessing HTTP security headers. Scans single or multiple targets, calculates security scores, identifies misconfigurations, and provides actionable recommendations.
 
 ---
 
-## 🚀 Installation
+## Features
+
+- Comprehensive security header scanning with severity ratings (**CRITICAL** to **LOW**)
+- Automatic security scoring (**0–100**) with letter grading (**A+ to F**)
+- Multi-threaded scanning for high-performance bulk assessments
+- Verbose mode with detailed explanations and remediation guidance
+- CSV export for compliance reporting and documentation
+- Fully configurable: timeouts, delays, threading, proxy, User-Agent
+- Colorized terminal output for better readability (with `--no-color` option)
+- Built-in security headers reference with `--help-headers`
+
+---
+
+## Installation
 
 ```bash
-git clone https://github.com/yourusername/claud_2.git
-cd claud_2
-python3 -m pip install -r requirements.txt
+git clone https://github.com/sneckey0day/SentinelHeaders.git
+cd SentinelHeaders
+pip install -r requirements.txt
 ````
 
-> Requirements file should contain:
->
-> * `requests`
-> * `argparse`
-> * `colorama` (optional for color support)
-
 ---
 
-## 🛠️ Usage
+## Usage
+
+### 🔍 Single URL Scan
 
 ```bash
-python3 claud_2.py -u https://example.com
+python3 sentinelheaders.py -u https://example.com
 ```
 
-### Available Arguments
-
-| Flag             | Description                                                |
-| ---------------- | ---------------------------------------------------------- |
-| `-u, --url`      | Target URL to scan                                         |
-| `-f, --file`     | File containing URLs (one per line)                        |
-| `--help-headers` | Display detailed explanation of each header                |
-| `-o, --output`   | Output results to a CSV file                               |
-| `-v, --verbose`  | Show recommendations for each missing/misconfigured header |
-| `--timeout`      | Set request timeout (default: `10` sec)                    |
-| `--delay`        | Delay between requests (default: `0.5` sec)                |
-| `--threads`      | Number of concurrent threads (default: `1`)                |
-| `--proxy`        | Use HTTP proxy (e.g., `http://127.0.0.1:8080`)             |
-| `--user-agent`   | Inject custom User-Agent string                            |
-| `--no-color`     | Disable color output for cleaner logs or automation        |
-| `-h, --help`     | Show help message and exit                                 |
-
----
-
-## 🔍 Header Severity Levels
-
-| Severity    | Headers Checked                                          |
-| ----------- | -------------------------------------------------------- |
-| 🔴 Critical | `Strict-Transport-Security`, `Content-Security-Policy`   |
-| 🟠 High     | `X-Frame-Options`, `X-Content-Type-Options`              |
-| 🟡 Medium   | `Referrer-Policy`, `Permissions-Policy`, `Cache-Control` |
-| 🟢 Low      | `X-XSS-Protection`                                       |
-
----
-
-## 📄 Example Usage
+### 📂 Bulk Scan from File
 
 ```bash
-# Scan a single URL
-python3 claud_2.py -u https://example.com
+python3 sentinelheaders.py -f targets.txt --threads 10
+```
 
-# Verbose scan with custom delay
-python3 claud_2.py -u https://target.com -v --delay 2
+### 📢 Verbose Mode with Recommendations
 
-# Bulk scan with multithreading and CSV output
-python3 claud_2.py -f urls.txt -o results --threads 5
+```bash
+python3 sentinelheaders.py -u https://example.com -v
+```
 
-# Use a proxy during scanning
-python3 claud_2.py -f urls.txt -v --proxy http://127.0.0.1:8080
+### 📊 Export Results to CSV
 
-# Display detailed reference of headers
-python3 claud_2.py --help-headers
+```bash
+python3 sentinelheaders.py -f targets.txt -o scan_results --threads 5
+```
+
+### ⚙️ Custom Thread Count
+
+```bash
+python3 sentinelheaders.py -f targets.txt --threads 15
+```
+
+### 🌐 Proxy and Custom User-Agent
+
+```bash
+python3 sentinelheaders.py -u https://example.com --proxy http://127.0.0.1:8080 --user-agent "Mozilla/5.0"
+```
+
+### 🧾 Show Headers Reference
+
+```bash
+python3 sentinelheaders.py --help-headers
 ```
 
 ---
 
-## 🧠 Notes
+## Help Menu
 
-* Ensure all target URLs include the scheme (`http://` or `https://`) to avoid resolution issues.
-* Results are saved in CSV format for further processing or reporting.
+```text
+usage: sentinelheaders.py [-h] (-u URL | -f FILE | --help-headers) [-o OUTPUT] [-v] [--timeout TIMEOUT] [--delay DELAY] [--threads THREADS] [--proxy PROXY]
+                          [--user-agent USER_AGENT] [--no-color]
+
+HTTP Security Headers Scanner v3.0 - Professional security assessment tool
+
+options:
+  -h, --help            Show this help message and exit
+  -u, --url URL         Single URL to scan
+  -f, --file FILE       File containing URLs (one per line)
+  --help-headers        Show detailed security headers reference
+  -o, --output OUTPUT   Save results to CSV file (auto-adds .csv)
+  -v, --verbose         Show detailed output with recommendations
+  --timeout TIMEOUT     Request timeout in seconds (default: 10)
+  --delay DELAY         Delay between requests in seconds (default: 0.5)
+  --threads THREADS     Number of threads for concurrent scanning (default: 1)
+  --proxy PROXY         HTTP proxy (e.g., http://127.0.0.1:8080)
+  --user-agent USER_AGENT Custom User-Agent string
+  --no-color            Disable colored output
+```
 
 ---
 
-## 📜 License
+## Headers Checked
 
-MIT License – feel free to use, modify, and share with proper credit.
+| Header Name                   | Severity | Description                                                    |
+| ----------------------------- | -------- | -------------------------------------------------------------- |
+| **Strict-Transport-Security** | CRITICAL | Enforces HTTPS and protects against MITM attacks               |
+| **Content-Security-Policy**   | CRITICAL | Defends against XSS and data injection                         |
+| **X-Frame-Options**           | HIGH     | Prevents clickjacking by restricting iframe embedding          |
+| **X-Content-Type-Options**    | HIGH     | Prevents MIME type sniffing attacks                            |
+| **Referrer-Policy**           | MEDIUM   | Controls information sent in the Referer header                |
+| **Permissions-Policy**        | MEDIUM   | Manages access to browser APIs and features                    |
+| **Cache-Control**             | MEDIUM   | Prevents caching of sensitive information                      |
+| **X-XSS-Protection**          | LOW      | Legacy XSS protection (mostly deprecated but sometimes useful) |
 
 ---
 
-## 🤝 Contributing
+## Scoring & Grading Logic
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change or improve.
+Each scanned header contributes to a cumulative **security score (0–100)**. The tool evaluates presence and correctness, weighted by severity:
+
+### Weighting by Severity
+
+* **CRITICAL** → 25 points
+* **HIGH** → 15 points
+* **MEDIUM** → 10 points
+* **LOW** → 5 points
+
+Misconfigured or missing headers result in partial or full deductions based on impact.
+
+### Grading Scale
+
+| Grade | Score Range |
+| ----- | ----------- |
+| A+    | 95–100      |
+| A     | 90–94       |
+| B     | 80–89       |
+| C     | 70–79       |
+| D     | 60–69       |
+| F     | < 60        |
+
+Verbose mode (`-v`) includes detailed scoring, header status, and recommendations.
 
 ---
 
-## 👤 Author
+## Screenshots
 
-**Sneckey0Day**
-Cyber Security Enthusiast | VAPT | Red Teaming | CTF Solver
+> *Screenshots showcasing scan results, grades, and CSV outputs will be added soon.*
+
+---
+
+## Contributing
+
+We welcome contributions from the security and open-source community.
+
+* Fork the repository
+* Create a feature branch (`feature/xyz` or `fix/issue123`)
+* Follow PEP8 coding guidelines
+* Submit a well-documented pull request
+
+Open issues, suggest enhancements, or contribute new header checks — all contributions are valued.
+
+---
+
+## License
+
+This project is licensed under the **MIT License**.
+You are free to use, distribute, and modify it with proper attribution.
+
+---
+
+**Built for red teams, defenders, and auditors. Use responsibly.**
