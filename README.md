@@ -17,3 +17,25 @@ A professional Python-based CLI tool for assessing HTTP security headers. Scans 
 git clone https://github.com/yourusername/SentinelHeaders.git
 cd SentinelHeaders
 pip install -r requirements.txt
+
+## Usage
+# Single URL scan
+python3 sentinelheaders.py -u https://example.com
+
+# Bulk scan from file
+python3 sentinelheaders.py -f targets.txt --threads 10
+
+# Verbose mode with recommendations
+python3 sentinelheaders.py -u https://example.com -v
+
+# Export results to CSV
+python3 sentinelheaders.py -f targets.txt -o scan_results --threads 5
+
+# Custom thread count
+python3 sentinelheaders.py -f targets.txt --threads 15
+
+# With proxy and custom user agent
+python3 sentinelheaders.py -u https://example.com --proxy http://127.0.0.1:8080 --user-agent "Mozilla/5.0"
+
+# Show headers reference
+python3 sentinelheaders.py --help-headers
