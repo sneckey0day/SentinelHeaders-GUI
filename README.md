@@ -143,7 +143,7 @@ Verbose mode (`-v`) includes detailed scoring, header status, and recommendation
 
 ## Screenshots
 
-> *Screenshots showcasing scan results, grades, and CSV outputs will be added soon.*
+![Alt text](https://github.com/sneckey0day/SentinelHeaders/blob/main/images/FILE.png?raw=true)
 
 ---
 
