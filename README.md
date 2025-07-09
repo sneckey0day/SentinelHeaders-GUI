@@ -3,6 +3,13 @@
 A professional Python-based CLI tool for assessing HTTP security headers. Scans single or multiple targets, calculates security scores, identifies misconfigurations, and provides actionable recommendations.
 
 ---
+## 📸 Screenshot
+
+Here’s an example output from SentinelHeaders:
+
+![SentinelHeaders Sample Output](https://github.com/sneckey0day/SentinelHeaders/blob/main/images/FILE.png?raw=true)
+
+---
 
 ## Features
 
@@ -138,12 +145,6 @@ Misconfigured or missing headers result in partial or full deductions based on i
 | F     | < 60        |
 
 Verbose mode (`-v`) includes detailed scoring, header status, and recommendations.
-
----
-
-## Screenshots
-
-![Alt text](https://github.com/sneckey0day/SentinelHeaders/blob/main/images/FILE.png?raw=true)
 
 ---
 
