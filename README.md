@@ -1,6 +1,8 @@
 # 🔐 SentinelHeaders – HTTP Security Headers Scanner
 
-![SentinelHeaders Sample Output](https://raw.githubusercontent.com/sneckey0day/SentinelHeaders/main/images/FILE.png)
+<div align="center">
+
+![SentinelHeaders Logo](https://raw.githubusercontent.com/sneckey0day/SentinelHeaders/main/images/HEADER.png)
 
 ---
 **Professional HTTP header security assessment for red teams, defenders, and auditors**
