@@ -151,8 +151,6 @@ You are free to use, distribute, and modify the tool with proper attribution.
 
 Proudly built by professionals passionate about cybersecurity, red teaming, and offensive tooling.
 
-![Credits Banner](https://github.com/sneckey0day/SentinelHeaders/blob/main/images/banner.png?raw=true)
-
 ---
 
 **Built for red teams, defenders, and auditors. Use responsibly.**
