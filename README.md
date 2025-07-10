@@ -1,30 +1,31 @@
 # SentinelHeaders - HTTP Security Headers Scanner
 
-A professional Python-based CLI tool for assessing HTTP security headers. Scans single or multiple targets, calculates security scores, identifies misconfigurations, and provides actionable recommendations.
+A professional-grade, Python-based CLI tool for assessing HTTP security headers. SentinelHeaders is designed for red teams, defenders, and compliance auditors — delivering deep visibility into HTTP header configurations with severity ratings, security scoring, and remediation guidance.
 
 ---
+
 ## 📸 Screenshot
 
-Here’s an example output from SentinelHeaders:
+Here's an example output from SentinelHeaders:
 
 ![SentinelHeaders Sample Output](https://github.com/sneckey0day/SentinelHeaders/blob/main/images/FILE.png?raw=true)
 
 ---
 
-## Features
+## 🔐 Features
 
-- Comprehensive security header scanning with severity ratings (**CRITICAL** to **LOW**)
-- Automatic security scoring (**0–100**) with letter grading (**A+ to F**)
+- Comprehensive security header scanning with severity levels (**CRITICAL** to **LOW**)
+- Automatic security scoring (**0–100**) based on header presence and quality
 - Multi-threaded scanning for high-performance bulk assessments
-- Verbose mode with detailed explanations and remediation guidance
-- CSV export for compliance reporting and documentation
-- Fully configurable: timeouts, delays, threading, proxy, User-Agent
-- Colorized terminal output for better readability (with `--no-color` option)
-- Built-in security headers reference with `--help-headers`
+- Verbose mode provides detailed explanations and actionable recommendations
+- CSV export support for compliance documentation and audits
+- Fully configurable (timeouts, threading, proxy, User-Agent, etc.)
+- Colorized terminal output with optional `--no-color` switch
+- Built-in header reference guide using `--help-headers`
 
 ---
 
-## Installation
+## ⚙️ Installation
 
 ```bash
 git clone https://github.com/sneckey0day/SentinelHeaders.git
@@ -34,9 +35,9 @@ pip install -r requirements.txt
 
 ---
 
-## Usage
+## 🚀 Usage
 
-### 🔍 Single URL Scan
+### 🔍 Scan a Single URL
 
 ```bash
 python3 sentinelheaders.py -u https://example.com
@@ -66,7 +67,7 @@ python3 sentinelheaders.py -f targets.txt -o scan_results --threads 5
 python3 sentinelheaders.py -f targets.txt --threads 15
 ```
 
-### 🌐 Proxy and Custom User-Agent
+### 🌐 Use Proxy & Custom User-Agent
 
 ```bash
 python3 sentinelheaders.py -u https://example.com --proxy http://127.0.0.1:8080 --user-agent "Mozilla/5.0"
@@ -80,7 +81,7 @@ python3 sentinelheaders.py --help-headers
 
 ---
 
-## Help Menu
+## 🆘 Help Menu
 
 ```text
 usage: sentinelheaders.py [-h] (-u URL | -f FILE | --help-headers) [-o OUTPUT] [-v] [--timeout TIMEOUT] [--delay DELAY] [--threads THREADS] [--proxy PROXY]
@@ -105,7 +106,7 @@ options:
 
 ---
 
-## Headers Checked
+## 🛡️ Headers Checked
 
 | Header Name                   | Severity | Description                                                    |
 | ----------------------------- | -------- | -------------------------------------------------------------- |
@@ -120,52 +121,40 @@ options:
 
 ---
 
-## Scoring & Grading Logic
+## 🤝 Contributing
 
-Each scanned header contributes to a cumulative **security score (0–100)**. The tool evaluates presence and correctness, weighted by severity:
-
-### Weighting by Severity
-
-* **CRITICAL** → 25 points
-* **HIGH** → 15 points
-* **MEDIUM** → 10 points
-* **LOW** → 5 points
-
-Misconfigured or missing headers result in partial or full deductions based on impact.
-
-### Grading Scale
-
-| Grade | Score Range |
-| ----- | ----------- |
-| A+    | 95–100      |
-| A     | 90–94       |
-| B     | 80–89       |
-| C     | 70–79       |
-| D     | 60–69       |
-| F     | < 60        |
-
-Verbose mode (`-v`) includes detailed scoring, header status, and recommendations.
-
----
-
-## Contributing
-
-We welcome contributions from the security and open-source community.
+We welcome community contributions.
 
 * Fork the repository
 * Create a feature branch (`feature/xyz` or `fix/issue123`)
-* Follow PEP8 coding guidelines
-* Submit a well-documented pull request
+* Follow PEP8 guidelines
+* Submit a clean and well-documented pull request
 
-Open issues, suggest enhancements, or contribute new header checks — all contributions are valued.
+Ideas, bug reports, header suggestions — all are appreciated.
 
 ---
 
-## License
+## 🪪 License
 
 This project is licensed under the **MIT License**.
-You are free to use, distribute, and modify it with proper attribution.
+
+You are free to use, distribute, and modify the tool with proper attribution.
+
+---
+
+## 🧠 Credits & Palette
+
+> **Core Developers**
+>
+> * [Sneckey0Day](https://github.com/sneckey0day)
+> * [prash0xd](https://github.com/prash0xd)
+
+Proudly built by professionals passionate about cybersecurity, red teaming, and offensive tooling.
+
+![Credits Banner](https://github.com/sneckey0day/SentinelHeaders/blob/main/images/banner.png?raw=true)
 
 ---
 
 **Built for red teams, defenders, and auditors. Use responsibly.**
+
+```
