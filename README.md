@@ -1,10 +1,6 @@
 # 🔐 SentinelHeaders – HTTP Security Headers Scanner
 
-<div align="center">
-
 ## 📸 Screenshot
-
-Here's the output from SentinelHeaders in action:
 
 ![SentinelHeaders Sample Output](https://raw.githubusercontent.com/sneckey0day/SentinelHeaders/main/images/FILE.png)
 
