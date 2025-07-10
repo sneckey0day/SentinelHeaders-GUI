@@ -1,31 +1,45 @@
-# SentinelHeaders - HTTP Security Headers Scanner
+# 🔐 SentinelHeaders – HTTP Security Headers Scanner
 
-A professional-grade, Python-based CLI tool for assessing HTTP security headers. SentinelHeaders is designed for red teams, defenders, and compliance auditors — delivering deep visibility into HTTP header configurations with severity ratings, security scoring, and remediation guidance.
+<div align="center">
+
+![SentinelHeaders Logo](https://raw.githubusercontent.com/sneckey0day/SentinelHeaders/main/images/og-image.png)
+
+**Professional HTTP header security assessment for red teams, defenders, and auditors**
+
+[![Live Scan](https://img.shields.io/badge/🌐_Live_Scan-local-00d4aa?style=for-the-badge)](#)
+[![GitHub Stars](https://img.shields.io/github/stars/sneckey0day/SentinelHeaders?style=for-the-badge&color=yellow)](https://github.com/sneckey0day/SentinelHeaders/stargazers)
+[![GitHub Issues](https://img.shields.io/github/issues/sneckey0day/SentinelHeaders?style=for-the-badge&color=red)](https://github.com/sneckey0day/SentinelHeaders/issues)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
+
+*Scan • Score • Secure*
+</div>
+
+## 🚀 What is SentinelHeaders?
+
+SentinelHeaders is a powerful, **Python-based CLI tool** that inspects and scores HTTP security headers across web targets. Designed by red teamers for offensive and defensive use, it offers actionable insights and compliance-ready reporting.
+
+### ✨ Key Features
+
+- 🔍 **Comprehensive scanning** with severity levels (CRITICAL → LOW)  
+- ⚡ **Bulk multi-threaded scans** for high-volume engagements  
+- 📊 **Scoring engine (0–100)** with letter grades (A+ → F)  
+- 📝 **Verbose mode** for deep-dive recommendations  
+- 🗂️ **CSV reports** ready for compliance and audit docs  
+- ⚙️ **Fully configurable** (threads, delays, proxy, User-Agent)  
+- 🎨 **Colorized output** (optional `--no-color`)  
+- 📚 **Built-in header reference** (`--help-headers`)
 
 ---
 
 ## 📸 Screenshot
 
-Here's an example output from SentinelHeaders:
+Here's the output from SentinelHeaders in action:
 
-![SentinelHeaders Sample Output](https://github.com/sneckey0day/SentinelHeaders/blob/main/images/FILE.png?raw=true)
-
----
-
-## 🔐 Features
-
-- Comprehensive security header scanning with severity levels (**CRITICAL** to **LOW**)
-- Automatic security scoring (**0–100**) based on header presence and quality
-- Multi-threaded scanning for high-performance bulk assessments
-- Verbose mode provides detailed explanations and actionable recommendations
-- CSV export support for compliance documentation and audits
-- Fully configurable (timeouts, threading, proxy, User-Agent, etc.)
-- Colorized terminal output with optional `--no-color` switch
-- Built-in header reference guide using `--help-headers`
+![SentinelHeaders Sample Output](https://raw.githubusercontent.com/sneckey0day/SentinelHeaders/main/images/FILE.png)
 
 ---
 
-## ⚙️ Installation
+## 🛠️ Installation
 
 ```bash
 git clone https://github.com/sneckey0day/SentinelHeaders.git
@@ -43,37 +57,39 @@ pip install -r requirements.txt
 python3 sentinelheaders.py -u https://example.com
 ```
 
-### 📂 Bulk Scan from File
+### 📂 Scan Multiple Targets
 
 ```bash
 python3 sentinelheaders.py -f targets.txt --threads 10
 ```
 
-### 📢 Verbose Mode with Recommendations
+### 📢 Verbose Mode
 
 ```bash
 python3 sentinelheaders.py -u https://example.com -v
 ```
 
-### 📊 Export Results to CSV
+### 📊 Export to CSV
 
 ```bash
-python3 sentinelheaders.py -f targets.txt -o scan_results --threads 5
+python3 sentinelheaders.py -f targets.txt -o results --threads 5
 ```
 
-### ⚙️ Custom Thread Count
+### ⚙️ Custom Threads
 
 ```bash
 python3 sentinelheaders.py -f targets.txt --threads 15
 ```
 
-### 🌐 Use Proxy & Custom User-Agent
+### 🌐 Proxy & User-Agent
 
 ```bash
-python3 sentinelheaders.py -u https://example.com --proxy http://127.0.0.1:8080 --user-agent "Mozilla/5.0"
+python3 sentinelheaders.py -u https://example.com \
+  --proxy http://127.0.0.1:8080 \
+  --user-agent "Mozilla/5.0"
 ```
 
-### 🧾 Show Headers Reference
+### 🧾 View Header Reference
 
 ```bash
 python3 sentinelheaders.py --help-headers
@@ -81,78 +97,97 @@ python3 sentinelheaders.py --help-headers
 
 ---
 
-## 🆘 Help Menu
+## 🔍 Headers Checked
 
-```text
-usage: sentinelheaders.py [-h] (-u URL | -f FILE | --help-headers) [-o OUTPUT] [-v] [--timeout TIMEOUT] [--delay DELAY] [--threads THREADS] [--proxy PROXY]
-                          [--user-agent USER_AGENT] [--no-color]
-
-HTTP Security Headers Scanner v3.0 - Professional security assessment tool
-
-options:
-  -h, --help            Show this help message and exit
-  -u, --url URL         Single URL to scan
-  -f, --file FILE       File containing URLs (one per line)
-  --help-headers        Show detailed security headers reference
-  -o, --output OUTPUT   Save results to CSV file (auto-adds .csv)
-  -v, --verbose         Show detailed output with recommendations
-  --timeout TIMEOUT     Request timeout in seconds (default: 10)
-  --delay DELAY         Delay between requests in seconds (default: 0.5)
-  --threads THREADS     Number of threads for concurrent scanning (default: 1)
-  --proxy PROXY         HTTP proxy (e.g., http://127.0.0.1:8080)
-  --user-agent USER_AGENT Custom User-Agent string
-  --no-color            Disable colored output
-```
-
----
-
-## 🛡️ Headers Checked
-
-| Header Name                   | Severity | Description                                                    |
-| ----------------------------- | -------- | -------------------------------------------------------------- |
-| **Strict-Transport-Security** | CRITICAL | Enforces HTTPS and protects against MITM attacks               |
-| **Content-Security-Policy**   | CRITICAL | Defends against XSS and data injection                         |
-| **X-Frame-Options**           | HIGH     | Prevents clickjacking by restricting iframe embedding          |
-| **X-Content-Type-Options**    | HIGH     | Prevents MIME type sniffing attacks                            |
-| **Referrer-Policy**           | MEDIUM   | Controls information sent in the Referer header                |
-| **Permissions-Policy**        | MEDIUM   | Manages access to browser APIs and features                    |
-| **Cache-Control**             | MEDIUM   | Prevents caching of sensitive information                      |
-| **X-XSS-Protection**          | LOW      | Legacy XSS protection (mostly deprecated but sometimes useful) |
+| Header                        | Severity | Purpose                                    |
+| ----------------------------- | -------- | ------------------------------------------ |
+| **Strict-Transport-Security** | CRITICAL | Enforces HTTPS to prevent MITM attacks     |
+| **Content-Security-Policy**   | CRITICAL | Mitigates XSS and data injection attacks   |
+| **X-Frame-Options**           | HIGH     | Prevents clickjacking via iframe embedding |
+| **X-Content-Type-Options**    | HIGH     | Stops MIME-type sniffing vulnerabilities   |
+| **Referrer-Policy**           | MEDIUM   | Controls Referer header leakage            |
+| **Permissions-Policy**        | MEDIUM   | Regulates browser API access               |
+| **Cache-Control**             | MEDIUM   | Prevents caching of sensitive assets       |
+| **X-XSS-Protection**          | LOW      | Legacy XSS protection (mostly deprecated)  |
 
 ---
 
 ## 🤝 Contributing
 
-We welcome community contributions.
+Contributions are welcome from the security and open-source community:
 
-* Fork the repository
-* Create a feature branch (`feature/xyz` or `fix/issue123`)
-* Follow PEP8 guidelines
-* Submit a clean and well-documented pull request
+1. Fork this repository
+2. Create a feature branch (`feature/xyz` / `fix/issue123`)
+3. Follow PEP‑8 style guidelines
+4. Submit a well-documented pull request
 
-Ideas, bug reports, header suggestions — all are appreciated.
+Please include detailed descriptions, use cases, and tests wherever possible.
 
 ---
 
 ## 🪪 License
 
-This project is licensed under the **MIT License**.
-
-You are free to use, distribute, and modify the tool with proper attribution.
+SentinelHeaders is released under the **MIT License**. See the [LICENSE](LICENSE) file for details.
 
 ---
 
 ## 🧠 Credits & Palette
 
-> **Core Developers**
->
-> * [Sneckey0Day](https://github.com/sneckey0day)
-> * [prash0xd](https://github.com/prash0xd)
+<div align="center">
+<table>
+<tr>
+<td align="center" width="50%">
+<a href="https://github.com/sneckey0day">
+<img src="https://github.com/sneckey0day.png" width="150" height="150" style="border-radius: 50%; border: 3px solid #00d4aa;" alt="Sneckey0Day">
+</a>
+<br><br>
+<h3><a href="https://github.com/sneckey0day" style="text-decoration: none; color: #333;">Sneckey0Day</a></h3>
+<p>
+<a href="https://github.com/sneckey0day">
+<img src="https://img.shields.io/badge/GitHub-sneckey0day-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub">
+</a>
+<br>
+<a href="https://www.linkedin.com/in/sneckey0day/">
+<img src="https://img.shields.io/badge/LinkedIn-sneckey0day-0077B5?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn">
+</a>
+</p>
+</td>
 
-Proudly built by professionals passionate about cybersecurity, red teaming, and offensive tooling.
+<td align="center" width="50%">
+<a href="https://github.com/prash0xd">
+<img src="https://github.com/prash0xd.png" width="150" height="150" style="border-radius: 50%; border: 3px solid #00d4aa;" alt="prash0xd">
+</a>
+<br><br>
+<h3><a href="https://github.com/prash0xd" style="text-decoration: none; color: #333;">prash0xd</a></h3>
+<p>
+<a href="https://github.com/prash0xd">
+<img src="https://img.shields.io/badge/GitHub-prash0xd-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub">
+</a>
+<br>
+<a href="https://www.linkedin.com/in/prash0xd/">
+<img src="https://img.shields.io/badge/LinkedIn-prash0xd-0077B5?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn">
+</a>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+
+Built with expertise in red teaming, security tooling, and professional ethics.
+
+
+## ⚖️ Legal Disclaimer
+
+SentinelHeaders is designed for **authorized testing** and **educational use only**. By using this tool, you confirm that you have proper authorization to scan the provided targets. The authors disclaim responsibility for misuse.
 
 ---
 
-**Built for red teams, defenders, and auditors. Use responsibly.**
+### ✅ Next Steps
 
-```
+* Add your `banner.png` or equivalent visual in `images/` for the **Credits Palette** section.
+* Replace logo and screenshot URLs with your actual assets.
+* Optionally, add badges for Python version, supported OS, CI status, etc.
+* Commit the `README.md` to your repo and enjoy the professional look!
+
+Let me know if you'd like ASCII headers, enhanced CLI help improvements, or CI badge support next.
