@@ -167,10 +167,10 @@ SentinelHeaders is released under the **MIT License**. See the [LICENSE](LICENSE
 </td>
 <td align="left" width="50%">
 <a href="https://github.com/R4HUL-INDIAN">
-<img src="https://github.com/R4HUL-INDIAN.png" width="150" height="150" style="border-radius: 50%; border: 3px solid #00d4aa;" alt="MultanSingh Medtiya">
+<img src="https://github.com/R4HUL-INDIAN.png" width="150" height="150" style="border-radius: 50%; border: 3px solid #00d4aa;" alt="r4hulindian">
 </a>
 <br><br>
-<h3><a href="https://github.com/R4HUL-INDIAN" style="text-decoration: none; color: #333;">MultanSingh Medtiya</a></h3>
+<h3><a href="https://github.com/R4HUL-INDIAN" style="text-decoration: none; color: #333;">r4hulindian</a></h3>
 <p>
 <a href="https://github.com/R4HUL-INDIAN">
 <img src="https://img.shields.io/badge/GitHub-R4HUL-INDIAN-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub">
