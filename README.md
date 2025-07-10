@@ -89,6 +89,7 @@ python3 sentinelheaders.py -u https://example.com \
 ```bash
 python3 sentinelheaders.py --help-headers
 ```
+![SentinelHeaders Logo](https://raw.githubusercontent.com/sneckey0day/SentinelHeaders/main/images/FILE.png)
 
 ---
 
