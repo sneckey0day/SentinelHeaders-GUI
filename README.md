@@ -2,8 +2,13 @@
 
 <div align="center">
 
-![SentinelHeaders Logo](https://raw.githubusercontent.com/sneckey0day/SentinelHeaders/main/images/og-image.png)
+## 📸 Screenshot
 
+Here's the output from SentinelHeaders in action:
+
+![SentinelHeaders Sample Output](https://raw.githubusercontent.com/sneckey0day/SentinelHeaders/main/images/FILE.png)
+
+---
 **Professional HTTP header security assessment for red teams, defenders, and auditors**
 
 [![Live Scan](https://img.shields.io/badge/🌐_Live_Scan-local-00d4aa?style=for-the-badge)](#)
@@ -31,13 +36,7 @@ SentinelHeaders is a powerful, **Python-based CLI tool** that inspects and score
 
 ---
 
-## 📸 Screenshot
 
-Here's the output from SentinelHeaders in action:
-
-![SentinelHeaders Sample Output](https://raw.githubusercontent.com/sneckey0day/SentinelHeaders/main/images/FILE.png)
-
----
 
 ## 🛠️ Installation
 
