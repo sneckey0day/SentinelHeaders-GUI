@@ -129,10 +129,10 @@ SentinelHeaders is released under the **MIT License**. See the [LICENSE](LICENSE
 
 ## 🧠 Credits & Palette
 
-<div align="center">
+<div align="left">
 <table>
 <tr>
-<td align="center" width="50%">
+<td align="left" width="50%">
 <a href="https://github.com/sneckey0day">
 <img src="https://github.com/sneckey0day.png" width="150" height="150" style="border-radius: 50%; border: 3px solid #00d4aa;" alt="Sneckey0Day">
 </a>
@@ -149,7 +149,7 @@ SentinelHeaders is released under the **MIT License**. See the [LICENSE](LICENSE
 </p>
 </td>
 
-<td align="center" width="50%">
+<td align="left" width="50%">
 <a href="https://github.com/prash0xd">
 <img src="https://github.com/prash0xd.png" width="150" height="150" style="border-radius: 50%; border: 3px solid #00d4aa;" alt="prash0xd">
 </a>
