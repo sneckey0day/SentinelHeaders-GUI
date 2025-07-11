@@ -175,14 +175,3 @@ Built with expertise in red teaming, security tooling, and professional ethics.
 ## ⚖️ Legal Disclaimer
 
 SentinelHeaders is designed for **authorized testing** and **educational use only**. By using this tool, you confirm that you have proper authorization to scan the provided targets. The authors disclaim responsibility for misuse.
-
----
-
-### ✅ Next Steps
-
-* Add your `banner.png` or equivalent visual in `images/` for the **Credits Palette** section.
-* Replace logo and screenshot URLs with your actual assets.
-* Optionally, add badges for Python version, supported OS, CI status, etc.
-* Commit the `README.md` to your repo and enjoy the professional look!
-
-Let me know if you'd like ASCII headers, enhanced CLI help improvements, or CI badge support next.
