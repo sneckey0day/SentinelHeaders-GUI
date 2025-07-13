@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentinelHeaders - Security Scanner</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0F1115;
+            color: #E0E0E0;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .header {
+            background: #1A1F2B;
+            border-bottom: 2px solid #3B82F6;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+        }
+        .logo { color: #3B82F6; font-size: 1.8rem; font-weight: bold; }
+        .hero {
+            background: linear-gradient(135deg, #1A1F2B 0%, #252A36 100%);
+            padding: 3rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .hero-content {
+            text-align: left;
+        }
+        .hero-features {
+            margin-top: 2rem;
+        }
+        .hero-features h3 {
+            color: #3B82F6;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        .hero-features ul {
+            list-style: none;
+            padding: 0;
+        }
+        .hero-features li {
+            color: #9CA3AF;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+        .hero-features li::before {
+            content: "🔹";
+            position: absolute;
+            left: 0;
+        }
+        .terminal-demo {
+            background: #0F1115;
+            border: 2px solid #3B82F6;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+        .terminal-header {
+            background: #1A1F2B;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #374151;
+        }
+        .terminal-controls {
+            display: flex;
+            gap: 0.5rem;
+            margin-right: 1rem;
+        }
+        .control {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .control.red { background: #ff5f56; }
+        .control.yellow { background: #ffbd2e; }
+        .control.green { background: #27ca3f; }
+        .terminal-title {
+            color: #9CA3AF;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .terminal-content {
+            flex: 1;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            overflow-y: auto;
+            color: #E0E0E0;
+        }
+        .terminal-line {
+            margin: 2px 0;
+            white-space: pre-wrap;
+        }
+        .cursor {
+            background: #3B82F6;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        .success { color: #10B981; }
+        .error { color: #EF4444; }
+        .warning { color: #F59E0B; }
+        .info { color: #06B6D4; }
+        .critical { color: #EF4444; }
+        .high { color: #F59E0B; }
+        .medium { color: #06B6D4; }
+        .low { color: #9CA3AF; }
+        .subtitle {
+            color: #6B7280;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content {
+                text-align: center;
+            }
+        }
+        .hero h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        .scanner-form {
+            background: #1A1F2B;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label {
+            display: block;
+            color: #3B82F6;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            background: #252A36;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            color: #E0E0E0;
+            font-size: 1rem;
+        }
+        .btn {
+            background: linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .results {
+            background: #1A1F2B;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+            display: none;
+        }
+        .terminal {
+            background: #0F1115;
+            border: 2px solid #3B82F6;
+            border-radius: 12px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .success { color: #10B981; }
+        .error { color: #EF4444; }
+        .warning { color: #F59E0B; }
+        .info { color: #06B6D4; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">🔐 SentinelHeaders</div>
+    </div>
+
+    <div class="container">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>SentinelHeaders</h1>
+                <p>Professional HTTP Security Headers Scanner</p>
+                <p class="subtitle">Advanced security assessment tool for analyzing HTTP headers, identifying vulnerabilities, and ensuring compliance with modern security standards.</p>
+                <div class="hero-features">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Real-time Security Analysis</li>
+                        <li>WAF Bypass Detection</li>
+                        <li>Multi-threaded Bulk Scanning</li>
+                        <li>Comprehensive Security Reports</li>
+                        <li>Security Policy Validation</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="terminal-demo">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="control red"></span>
+                        <span class="control yellow"></span>
+                        <span class="control green"></span>
+                    </div>
+                    <div class="terminal-title">SentinelHeaders Live Demo</div>
+                </div>
+                <div class="terminal-content" id="terminalContent">
+                    <div class="terminal-line"><span class="cursor">█</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scanner-form">
+            <h2 style="color: #3B82F6; margin-bottom: 1rem;">Single URL Scanner</h2>
+            <form id="scanForm">
+                <div class="form-group">
+                    <label for="url">Target URL</label>
+                    <input type="text" id="url" placeholder="https://example.com" required>
+                </div>
+                <button type="submit" class="btn">Start Scan</button>
+            </form>
+        </div>
+
+        <div id="results" class="results">
+            <h3 style="color: #3B82F6; margin-bottom: 1rem;">Scan Results</h3>
+            <div id="output" class="terminal"></div>
+        </div>
+    </div>
+
+    <script>
+        // Terminal Animation
+        const terminalLines = [
+            '┌─────────────────────────────────────────────────────────────────────────────────┐',
+            '│                                                                                 │',
+            '│    [#] HTTP SECURITY HEADERS SCANNER v3.0                                       │',
+            '│                                                                                 │',
+            '│    [*] Professional Security Assessment Tool                                    │',
+            '│    [*] WAF Bypass | Threading | Security Policy Analysis                        │',
+            '│    [*] Copyright (c) 2025 Security Headers Scanner                              │',
+            '│                                                                                 │',
+            '└─────────────────────────────────────────────────────────────────────────────────┘',
+            '',
+            '<span class="info">[*] Configuration:</span>',
+            '    Timeout: 10s',
+            '    Delay: 0.5s',
+            '    Threads: 1',
+            '',
+            '<span class="success">[+] SINGLE URL SCAN</span>',
+            '─────────────────────────────────────────────────────────────────────────────────',
+            '',
+            '<span class="success">[+] TARGET: https://jecrcuniversity.edu.in</span>',
+            '─────────────────────────────────────────────────────────────────────────────────',
+            '<span class="info">[*] Status Code: 200</span>',
+            '<span class="info">[*] Security Score: 29/100 (Grade: F)</span>',
+            '',
+            '<span class="success">[+] SECURITY POLICIES</span>',
+            '<span class="success">[+] HTTPS_Enforcement: Site uses HTTPS</span>',
+            '<span class="warning">[!] Server_Info_Disclosure: Server header disclosed: LiteSpeed</span>',
+            '<span class="info">[*] Cookie_Security: No cookies set</span>',
+            '',
+            '<span class="success">[+] PRESENT SECURITY HEADERS</span>',
+            '<span class="success">[+] Content-Security-Policy             (CRITICAL)</span>',
+            '<span class="success">[+] X-Powered-By                        (LOW)</span>',
+            '',
+            '<span class="error">[-] MISSING SECURITY HEADERS</span>',
+            '<span class="critical">[-] Strict-Transport-Security           (CRITICAL) [-25 pts]</span>',
+            '<span class="high">[-] Set-Cookie                          (HIGH) [-15 pts]</span>',
+            '<span class="high">[-] X-Frame-Options                     (HIGH) [-15 pts]</span>',
+            '<span class="high">[-] X-Content-Type-Options              (HIGH) [-15 pts]</span>',
+            '<span class="low">[-] X-XSS-Protection                    (LOW) [-5 pts]</span>',
+            '<span class="medium">[-] Cross-Origin-Resource-Policy        (MEDIUM) [-8 pts]</span>',
+            '<span class="medium">[-] Cache-Control                       (MEDIUM) [-10 pts]</span>',
+            '<span class="medium">[-] Referrer-Policy                     (MEDIUM) [-10 pts]</span>',
+            '<span class="medium">[-] Permissions-Policy                  (MEDIUM) [-10 pts]</span>',
+            '',
+            '<span class="success">[+] Scan completed in 4.23 seconds</span>'
+        ];
+
+        let currentLine = 0;
+        const terminalContent = document.getElementById('terminalContent');
+
+        function typeNextLine() {
+            if (currentLine < terminalLines.length) {
+                const line = terminalLines[currentLine];
+                const lineElement = document.createElement('div');
+                lineElement.className = 'terminal-line';
+                lineElement.innerHTML = line;
+                
+                // Remove cursor from previous line
+                const existingCursor = terminalContent.querySelector('.cursor');
+                if (existingCursor) {
+                    existingCursor.remove();
+                }
+                
+                terminalContent.appendChild(lineElement);
+                
+                // Add cursor to new line
+                const cursor = document.createElement('span');
+                cursor.className = 'cursor';
+                cursor.textContent = '█';
+                lineElement.appendChild(cursor);
+                
+                // Scroll to bottom
+                terminalContent.scrollTop = terminalContent.scrollHeight;
+                
+                currentLine++;
+                
+                // Vary the typing speed for realism
+                const delay = line.trim() === '' ? 300 : (Math.random() * 500 + 200);
+                setTimeout(typeNextLine, delay);
+            } else {
+                // Animation complete, restart after a pause
+                setTimeout(() => {
+                    currentLine = 0;
+                    terminalContent.innerHTML = '<div class="terminal-line"><span class="cursor">█</span></div>';
+                    setTimeout(typeNextLine, 2000);
+                }, 5000);
+            }
+        }
+
+        // Start the animation when page loads
+        setTimeout(typeNextLine, 1000);
+
+        // Scanner form functionality
+        document.getElementById('scanForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const url = document.getElementById('url').value;
+            const resultsDiv = document.getElementById('results');
+            const outputDiv = document.getElementById('output');
+            
+            resultsDiv.style.display = 'block';
+            outputDiv.innerHTML = '<div class="info">🔍 Scanning ' + url + '...</div>';
+            
+            try {
+                const response = await fetch('/api/scan/single', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url })
+                });
+                
+                const result = await response.json();
+                
+                let output = '';
+                output += '<div class="success">✅ Scan completed successfully</div>';
+                output += '<div class="info">📊 URL: ' + result.url + '</div>';
+                output += '<div class="info">📈 Status Code: ' + result.statusCode + '</div>';
+                output += '<div class="info">🎯 Security Score: ' + result.securityScore + '/100 (Grade: ' + result.grade + ')</div>';
+                output += '<br>';
+                
+                if (result.presentHeaders && result.presentHeaders.length > 0) {
+                    output += '<div class="success">✅ PRESENT SECURITY HEADERS (' + result.presentHeaders.length + '):</div>';
+                    result.presentHeaders.forEach(header => {
+                        output += '<div class="success">+ ' + header.name + ' (' + header.severity + ')</div>';
+                    });
+                    output += '<br>';
+                }
+                
+                if (result.missingHeaders && result.missingHeaders.length > 0) {
+                    output += '<div class="error">❌ MISSING SECURITY HEADERS (' + result.missingHeaders.length + '):</div>';
+                    result.missingHeaders.forEach(header => {
+                        output += '<div class="error">- ' + header.name + ' (' + header.severity + ') [-' + header.points + ' pts]</div>';
+                    });
+                }
+                
+                outputDiv.innerHTML = output;
+            } catch (error) {
+                outputDiv.innerHTML = '<div class="error">❌ Error: ' + error.message + '</div>';
+            }
+        });
+    </script>
+</body>
+</html>
