@@ -289,8 +289,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <a href="https://github.com/sneckey0day">GitHub</a>
 </td>
 <td align="center">
-<a href="https://github.com/c0dewithprash">
-<img src="https://github.com/c0dewithprash.png" width="100" height="100" style="border-radius: 50%;" alt="c0dewithprash">
+<a href="https://github.com/prash0xd">
+<img src="https://github.com/prash0xd.png" width="100" height="100" style="border-radius: 50%;" alt="prash0xd">
 </a>
 <br>
 <strong>Prashant Kumar</strong>
@@ -298,7 +298,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <sub>Frontend Developer & UI/UX Designer</sub>
 <br>
 <a href="https://linkedin.com/in/c0dewithprash/">LinkedIn</a> • 
-<a href="https://github.com/c0dewithprash">GitHub</a>
+<a href="https://github.com/prash0xd">GitHub</a>
 </td>
 </tr>
 </table>
