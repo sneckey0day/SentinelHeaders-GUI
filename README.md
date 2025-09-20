@@ -1,7 +1,9 @@
 # SentinelHeaders GUI
 
 <div align="center">
+
 [![Live Scan](https://img.shields.io/badge/🌐_Live_Scan-local-00d4aa?style=for-the-badge)](https://lively-tulumba-7c4175.netlify.app/)
+
 **Professional HTTP Security Headers Scanner with Modern React Web Interface**
 
 [![React](https://img.shields.io/badge/React-18+-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
